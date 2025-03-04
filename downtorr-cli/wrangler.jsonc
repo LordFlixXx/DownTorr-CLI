@@ -1,0 +1,13 @@
+{
+	"name": "downtorr-cli",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-03-04",
+	"account_id": "962d0bd07aad1f73db41e18f45cb7470",
+	// Zone ID é opcional se você não estiver implantando em uma zona específica
+	// "zone_id": "YOUR_CLOUDFLARE_ZONE_ID",
+	"env": {
+	  "production": {
+		"route": "https://cdn.filmes.net.eu.org/*"
+	  }
+	}
+  }
