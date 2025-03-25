@@ -1,2 +1,3 @@
 ﻿# Outras dependências necessárias
 requests
+pytest
