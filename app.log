@@ -1,11 +1,5 @@
-2025-03-27 04:27:34,670 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
-2025-03-27 04:27:35,010 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt3580332 HTTP/1.1" 200 None
-2025-03-27 04:27:35,299 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67840-White Trash (2021)-3580332-720p
-2025-03-27 04:27:35,299 - INFO - Iniciando o download do torrent com hash: 4139C5B0D39E20402088C49C4853BE51764BF1B1
-2025-03-27 04:29:08,274 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
-2025-03-27 04:29:08,275 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
-2025-03-27 04:29:08,275 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
-2025-03-27 04:29:08,275 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
-2025-03-27 04:29:08,276 - INFO - file_cache is only supported with oauth2client<4.0.0
-2025-03-27 04:29:08,316 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=name+%3D+%27app.log%27+and+%271sASley-Ks5DOKkx61tcCsaTX5ErT-YYr%27+in+parents&spaces=drive&fields=nextPageToken%2C+files%28id%2C+name%29&alt=json
-2025-03-27 04:29:08,319 - DEBUG - Making request: POST https://oauth2.googleapis.com/token
+2025-03-27 05:12:31,428 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
+2025-03-27 05:12:32,278 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt33130643 HTTP/1.1" 200 730
+2025-03-27 05:12:43,270 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67834-Zombie Repellent (2025)-33130643-1080p
+2025-03-27 05:12:43,270 - INFO - Iniciando o download do torrent com hash: 482394941DF893A799B06A7277373999B8254CED
+2025-03-27 05:14:18,894 - ERROR - Erro ao salvar legenda Zombie.Repellent.2025.1080p.WEBRip.x264.AAC-[YTS.MX].srt: [Errno 2] No such file or directory: '/content/drive/MyDrive/GitHub/MakingOff/dist/cc/Zombie.Repellent.2025.1080p.WEBRip.x264.AAC-[YTS.MX].srt'
