@@ -42,7 +42,7 @@ def main():
         # Processar os torrents com um pool de threads
         with ThreadPoolExecutor(max_workers=3) as executor:
             futures = []
-            for movie in movies_to_process[:3]:  # Processar apenas 3 filmes por vez
+            for movie in movies_to_process:  # Processar um filme por vez
                 imdb_code = movie.get('imdb_code')
                 movie_id = movie.get('id')
                 title_long = movie.get('title_long')
@@ -64,6 +64,7 @@ def main():
                         }
                         futures.append(executor.submit(process_torrent, torrent_info))
                         movie['processed'] = True  # Marcar o filme como processado
+                        break  # Processar apenas um torrent por filme
                         
             for future in as_completed(futures):
                 future.result()  # Para capturar exceções, se houver
@@ -71,7 +72,7 @@ def main():
         # Salvar o estado atualizado de filmes no arquivo JSON
         with open(file_path, 'w') as f:
             json.dump(movies_data, f, indent=4)
-
+    
         # Aguardar um pouco antes de processar o próximo lote
         time.sleep(5)
 
