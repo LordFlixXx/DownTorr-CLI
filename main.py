@@ -14,11 +14,6 @@ def in_ipython():
     except NameError:
         return False
 
-# Montar o Google Drive se estiver em um ambiente IPython/Google Colab
-if in_ipython():
-    from google.colab import drive
-    drive.mount('/content/drive')
-
 # Verificar se o caminho existe
 project_path = '/content/drive/MyDrive/GitHub/DownTorr-CLI'
 if not os.path.exists(project_path):

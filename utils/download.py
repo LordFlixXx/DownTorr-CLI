@@ -5,7 +5,6 @@ from utils.upload import upload_subtitles
 from utils.utils import create_magnet_link
 from IPython import get_ipython
 from IPython.display import display
-from google.colab import drive
 from google.colab import auth
 from googleapiclient.discovery import build
 
@@ -21,7 +20,6 @@ def obter_id_arquivo_apos_download(folder_id='1sASley-Ks5DOKkx61tcCsaTX5ErT-YYr'
       O ID do arquivo do Google Drive ou None se o arquivo não for encontrado.
   """
   # 1. Autenticar no Google Drive.
-  drive.mount('/content/drive')
   auth.authenticate_user()
 
   # 2. Criar um serviço Drive API.
