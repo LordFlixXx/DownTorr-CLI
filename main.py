@@ -2,25 +2,10 @@
 from utils.logging_config import configure_logging
 from utils.download import download_and_process_torrent
 from utils.utils import read_json_file
+import requests
 import os
 import time
 import json
-
-# Função para verificar se está em um ambiente Jupyter/IPython
-def in_ipython():
-    try:
-        get_ipython
-        return True
-    except NameError:
-        return False
-
-# Verificar se o caminho existe
-project_path = '/content/drive/MyDrive/GitHub/DownTorr-CLI'
-if not os.path.exists(project_path):
-    raise FileNotFoundError(f"O diretório {project_path} não existe.")
-else:
-    os.chdir(project_path)
-    print(f"Diretório alterado para {project_path}")
 
 # Configurar o logging
 configure_logging()
@@ -41,7 +26,92 @@ def get_largest_non_3d_torrent(torrents):
 def process_torrent(torrent_info):
     download_and_process_torrent(torrent_info)
 
+def get_movie_details_by_imdb(imdb_code):
+    response = requests.get(f"https://yts.mx/api/v2/movie_details.json?imdb_id={imdb_code}")
+    return response.json().get('data', {}).get('movie', {})
+
+def get_movie_details_by_movie_id(movie_id):
+    response = requests.get(f"https://yts.mx/api/v2/movie_details.json?movie_id={movie_id}")
+    return response.json().get('data', {}).get('movie', {})
+
+def manual_processing():
+    choice = input("Deseja processar manualmente algum filme específico? (Sim/Não): ").strip().lower()
+    if choice != "sim":
+        return False, None
+
+    identifier = input("Qual filme deseja processar? (Digite o imdb_code, movie_id ou hash): ").strip()
+    if identifier.startswith("tt"):
+        movie = get_movie_details_by_imdb(identifier)
+    elif identifier.isdigit():
+        movie = get_movie_details_by_movie_id(identifier)
+    else:
+        hash_value = identifier
+        imdb_code = input("Digite o imdb_code do filme: ").strip()
+        movie = get_movie_details_by_imdb(imdb_code)
+        if movie:
+            torrents = movie.get('torrents', [])
+            hash_torrent = next((t for t in torrents if t.get('hash') == hash_value), None)
+            if hash_torrent:
+                process_torrent({
+                    "id": movie['id'],
+                    "title_long": movie['title_long'],
+                    "imdb_code": movie['imdb_code'],
+                    "year": movie['year'],
+                    "hash": hash_value,
+                    "quality": hash_torrent.get('quality'),
+                    "size_bytes": hash_torrent.get('size_bytes'),
+                    "download_base_dir": download_base_dir
+                })
+                return True, None
+            else:
+                print("Hash não encontrado.")
+                return False, None
+
+    if movie:
+        torrents = movie.get('torrents', [])
+        print(f"Torrents encontrados para {movie['title_long']}:")
+        for t in torrents:
+            print(f"Hash: {t['hash']}, Quality: {t['quality']}, Size: {t['size_bytes']}")
+
+        all_hashes = input("Deseja baixar todos os hashes? (Sim/Não): ").strip().lower()
+        if all_hashes == "sim":
+            for t in torrents:
+                process_torrent({
+                    "id": movie['id'],
+                    "title_long": movie['title_long'],
+                    "imdb_code": movie['imdb_code'],
+                    "year": movie['year'],
+                    "hash": t['hash'],
+                    "quality": t['quality'],
+                    "size_bytes": t['size_bytes'],
+                    "download_base_dir": download_base_dir
+                })
+        else:
+            specific_hash = input("Digite o hash que deseja processar: ").strip()
+            hash_torrent = next((t for t in torrents if t.get('hash') == specific_hash), None)
+            if hash_torrent:
+                process_torrent({
+                    "id": movie['id'],
+                    "title_long": movie['title_long'],
+                    "imdb_code": movie['imdb_code'],
+                    "year": movie['year'],
+                    "hash": specific_hash,
+                    "quality": hash_torrent.get('quality'),
+                    "size_bytes": hash_torrent.get('size_bytes'),
+                    "download_base_dir": download_base_dir
+                })
+            else:
+                print("Hash não encontrado.")
+    else:
+        print("Filme não encontrado.")
+    
+    return True, None
+
 def main():
+    manual, _ = manual_processing()
+    if manual:
+        return
+
     file_path = '/content/drive/MyDrive/GitHub/MakingOff/dist/filmes.json'
     
     while True:
