@@ -3,73 +3,65 @@ import subprocess
 import logging
 from utils.upload import upload_subtitles
 from utils.utils import create_magnet_link
-from IPython import get_ipython
-from IPython.display import display
-from google.colab import auth
+from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-# Função para verificar se está em um ambiente IPython
-def in_ipython():
-    try:
-        get_ipython
-        return True
-    except NameError:
-        return False
+# Caminho para o arquivo de credenciais JSON
+credential_path = '/content/drive/MyDrive/path/to/your/credentials.json'
+
+# Autenticar e criar o serviço da API do Google Drive
+credentials = service_account.Credentials.from_service_account_file(credential_path)
+service = build('drive', 'v3', credentials=credentials)
 
 # Função para obter o ID do arquivo após o download
 def obter_id_arquivo_apos_download(folder_id='1sASley-Ks5DOKkx61tcCsaTX5ErT-YYr'):
-  """Obtém o ID do arquivo do Google Drive após o download do vídeo,
-  pesquisando na pasta especificada e suas subpastas.
+    """Obtém o ID do arquivo do Google Drive após o download do vídeo,
+    pesquisando na pasta especificada e suas subpastas.
 
-  Args:
-      folder_id: O ID da pasta raiz onde iniciar a pesquisa.
+    Args:
+        folder_id: O ID da pasta raiz onde iniciar a pesquisa.
 
-  Returns:
-      O ID do arquivo do Google Drive ou None se o arquivo não for encontrado.
-  """
-  # Verificar se está em um ambiente IPython
-  if in_ipython():
-      # 1. Autenticar no Google Drive.
-      auth.authenticate_user()
+    Returns:
+        O ID do arquivo do Google Drive ou None se o arquivo não for encontrado.
+    """
+    # Criar um serviço Drive API.
+    service = build('drive', 'v3', credentials=credentials)
 
-  # 2. Criar um serviço Drive API.
-  service = build('drive', 'v3')
+    # Obter o nome do arquivo baixado automaticamente.
+    lista_de_arquivos = os.listdir('.')
+    lista_de_arquivos.sort(key=os.path.getmtime, reverse=True)
+    nome_do_arquivo_de_video = lista_de_arquivos[0]
 
-  # 3. Obter o nome do arquivo baixado automaticamente.
-  lista_de_arquivos = os.listdir('.')
-  lista_de_arquivos.sort(key=os.path.getmtime, reverse=True)
-  nome_do_arquivo_de_video = lista_de_arquivos[0]
+    # Função recursiva para pesquisar em todas as subpastas.
+    def pesquisar_recursivamente(pasta_id):
+        """Pesquisa o arquivo na pasta atual e chama a si mesma para subpastas."""
+        results = service.files().list(
+            q=f"name = '{nome_do_arquivo_de_video}' and '{pasta_id}' in parents",
+            spaces='drive',
+            fields='nextPageToken, files(id, name)'
+        ).execute()
+        items = results.get('files', [])
+        if items:
+            return items[0]['id']  # Encontrou o arquivo, retorna o ID
 
-  # 4. Função recursiva para pesquisar em todas as subpastas.
-  def pesquisar_recursivamente(pasta_id):
-    """Pesquisa o arquivo na pasta atual e chama a si mesma para subpastas."""
-    results = service.files().list(
-        q=f"name = '{nome_do_arquivo_de_video}' and '{pasta_id}' in parents",
-        spaces='drive',
-        fields='nextPageToken, files(id, name)'
-    ).execute()
-    items = results.get('files', [])
-    if items:
-      return items[0]['id']  # Encontrou o arquivo, retorna o ID
+        # Se não encontrado na pasta atual, pesquisa nas subpastas
+        results = service.files().list(
+            q=f"'{pasta_id}' in parents and mimeType = 'application/vnd.google-apps.folder'",
+            spaces='drive',
+            fields='nextPageToken, files(id, name)'
+        ).execute()
+        subpastas = results.get('files', [])
+        for subpasta in subpastas:
+            arquivo_id = pesquisar_recursivamente(subpasta['id'])
+            if arquivo_id:
+                return arquivo_id  # Encontrou em uma subpasta, retorna o ID
 
-    # Se não encontrado na pasta atual, pesquisa nas subpastas
-    results = service.files().list(
-        q=f"'{pasta_id}' in parents and mimeType = 'application/vnd.google-apps.folder'",
-        spaces='drive',
-        fields='nextPageToken, files(id, name)'
-    ).execute()
-    subpastas = results.get('files', [])
-    for subpasta in subpastas:
-      arquivo_id = pesquisar_recursivamente(subpasta['id'])
-      if arquivo_id:
-        return arquivo_id  # Encontrou em uma subpasta, retorna o ID
+        return None  # Não encontrado em nenhuma pasta
 
-    return None  # Não encontrado em nenhuma pasta
+    # Iniciar a pesquisa a partir da pasta raiz.
+    id_do_arquivo = pesquisar_recursivamente(folder_id)
 
-  # 5. Iniciar a pesquisa a partir da pasta raiz.
-  id_do_arquivo = pesquisar_recursivamente(folder_id)
-
-  return id_do_arquivo
+    return id_do_arquivo
 
 def download_and_process_torrent(torrent_info):
     imdb_code = torrent_info["imdb_code"].replace("tt", "", 1)  # Remover a primeira ocorrência de "tt"
