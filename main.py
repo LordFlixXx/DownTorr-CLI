@@ -2,13 +2,22 @@
 from utils.logging_config import configure_logging
 from utils.download import download_and_process_torrent
 from utils.utils import read_json_file
-from google.colab import drive
 import os
 import time
 import json
 
-# Montar o Google Drive
-drive.mount('/content/drive')
+# Função para verificar se está em um ambiente Jupyter/IPython
+def in_ipython():
+    try:
+        get_ipython
+        return True
+    except NameError:
+        return False
+
+# Montar o Google Drive se estiver em um ambiente IPython/Google Colab
+if in_ipython():
+    from google.colab import drive
+    drive.mount('/content/drive')
 
 # Verificar se o caminho existe
 project_path = '/content/drive/MyDrive/GitHub/DownTorr-CLI'
