@@ -1,2 +1,24 @@
-2025-03-27 02:18:35,735 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/11209-The Jailhouse (2009)-1318516-1080p
-2025-03-27 02:18:35,735 - INFO - Iniciando o download do torrent com hash: E58A2DD033D3A0BC985D4168C608E70A8161792B
+2025-03-27 02:56:41,761 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
+2025-03-27 02:56:42,211 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt0085356 HTTP/1.1" 200 None
+2025-03-27 02:57:07,169 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/33286-Conquest (1983)-0085356-1080p
+2025-03-27 02:57:07,169 - INFO - Iniciando o download do torrent com hash: 19E1F77DFEC6B18C4CF8A06CB52B6EAAC18197A3
+2025-03-27 03:03:14,268 - DEBUG - Checking None for explicit credentials as part of auth process...
+2025-03-27 03:03:14,268 - DEBUG - Checking Cloud SDK credentials as part of auth process...
+2025-03-27 03:03:14,272 - DEBUG - Cloud SDK credentials not found on disk; not using them
+2025-03-27 03:03:14,283 - DEBUG - Making request: GET http://169.254.169.254
+2025-03-27 03:03:14,285 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2025-03-27 03:03:14,315 - WARNING - No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
+2025-03-27 03:03:14,316 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2025-03-27 03:03:14,318 - DEBUG - Starting new HTTP connection (1): metadata.google.internal:80
+2025-03-27 03:03:14,405 - DEBUG - http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 404 0
+2025-03-27 03:03:14,406 - INFO - Failure refreshing credentials: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7a862627d510>)
+2025-03-27 03:03:14,407 - DEBUG - Checking None for explicit credentials as part of auth process...
+2025-03-27 03:03:14,407 - DEBUG - Checking Cloud SDK credentials as part of auth process...
+2025-03-27 03:03:14,407 - DEBUG - Cloud SDK credentials not found on disk; not using them
+2025-03-27 03:03:14,408 - DEBUG - Making request: GET http://169.254.169.254
+2025-03-27 03:03:14,409 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2025-03-27 03:03:14,412 - WARNING - No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
+2025-03-27 03:03:14,413 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2025-03-27 03:03:14,414 - DEBUG - Starting new HTTP connection (1): metadata.google.internal:80
+2025-03-27 03:03:14,523 - DEBUG - http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 404 0
+2025-03-27 03:03:14,523 - INFO - Failure refreshing credentials: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7a86261e6ed0>)

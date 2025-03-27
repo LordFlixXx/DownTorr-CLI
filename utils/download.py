@@ -8,6 +8,14 @@ from IPython.display import display
 from google.colab import auth
 from googleapiclient.discovery import build
 
+# Função para verificar se está em um ambiente IPython
+def in_ipython():
+    try:
+        get_ipython
+        return True
+    except NameError:
+        return False
+
 # Função para obter o ID do arquivo após o download
 def obter_id_arquivo_apos_download(folder_id='1sASley-Ks5DOKkx61tcCsaTX5ErT-YYr'):
   """Obtém o ID do arquivo do Google Drive após o download do vídeo,
@@ -19,8 +27,10 @@ def obter_id_arquivo_apos_download(folder_id='1sASley-Ks5DOKkx61tcCsaTX5ErT-YYr'
   Returns:
       O ID do arquivo do Google Drive ou None se o arquivo não for encontrado.
   """
-  # 1. Autenticar no Google Drive.
-  auth.authenticate_user()
+  # Verificar se está em um ambiente IPython
+  if in_ipython():
+      # 1. Autenticar no Google Drive.
+      auth.authenticate_user()
 
   # 2. Criar um serviço Drive API.
   service = build('drive', 'v3')
