@@ -4,7 +4,7 @@ import logging
 
 def save_subtitles_to_drive(imdb_code, hash_value, subtitle_path):
     """Salva as legendas no Google Drive montado."""
-    drive_path = '/content/drive/MyDrive/GitHub/MakingOff/dist/cc'
+    drive_path = '/content/drive/MyDrive/GitHub/MakingOff.eu.org/dist/cc'
     destination_path = os.path.join(drive_path, os.path.basename(subtitle_path))
 
     try:
