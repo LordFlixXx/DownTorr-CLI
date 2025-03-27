@@ -52,17 +52,18 @@ def rename_files(directory, movie_info):
     quality = movie_info['quality']
     folder_name = f"{movie_id}-{title_long}-{imdb_code}-{quality}"
 
-    for file in os.listdir(directory):
-        if file.endswith(('.mp4', '.mkv', '.avi', '.webm')):
-            old_file_path = os.path.join(directory, file)
-            ext = os.path.splitext(file)[1]
-            new_file_name = f"{folder_name}{ext}"
-            new_file_path = os.path.join(directory, new_file_name)
-            logging.info(f"Tentando renomear arquivo: {old_file_path} para {new_file_path}")
-            try:
-                os.rename(old_file_path, new_file_path)
-                print(f"Arquivo renomeado para: {new_file_name}")
-            except KeyError as e:
-                logging.error(f"Erro ao renomear arquivo: {file}. Informações faltando: {e}")
-            except OSError as e:
-                logging.error(f"Erro ao renomear arquivo: {file}. Erro do sistema: {e}")
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(('.mp4', '.mkv', '.avi', '.webm')):
+                old_file_path = os.path.join(root, file)
+                ext = os.path.splitext(file)[1]
+                new_file_name = f"{folder_name}{ext}"
+                new_file_path = os.path.join(root, new_file_name)
+                logging.info(f"Tentando renomear arquivo: {old_file_path} para {new_file_path}")
+                try:
+                    os.rename(old_file_path, new_file_path)
+                    print(f"Arquivo renomeado para: {new_file_name}")
+                except KeyError as e:
+                    logging.error(f"Erro ao renomear arquivo: {file}. Informações faltando: {e}")
+                except OSError as e:
+                    logging.error(f"Erro ao renomear arquivo: {file}. Erro do sistema: {e}")
