@@ -7,7 +7,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 # Caminho para o arquivo de credenciais JSON
-credential_path = '/content/drive/MyDrive/GitHub/DownTorr-CLI/credentials.json'
+credential_path = '/content/drive/MyDrive/GitHub/DownTorr-CLI/client_secret_246697740043-brlhv8eaneapnht8frcinuo45qf5k6j8.apps.googleusercontent.com.json'
 
 # Autenticar e criar o serviço da API do Google Drive
 credentials = service_account.Credentials.from_service_account_file(credential_path)
