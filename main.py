@@ -2,9 +2,21 @@
 from utils.logging_config import configure_logging
 from utils.download import download_and_process_torrent
 from utils.utils import read_json_file
+from google.colab import drive
 import os
 import time
 import json
+
+# Montar o Google Drive
+drive.mount('/content/drive')
+
+# Verificar se o caminho existe
+project_path = '/content/drive/MyDrive/GitHub/DownTorr-CLI'
+if not os.path.exists(project_path):
+    raise FileNotFoundError(f"O diretório {project_path} não existe.")
+else:
+    os.chdir(project_path)
+    print(f"Diretório alterado para {project_path}")
 
 # Configurar o logging
 configure_logging()
