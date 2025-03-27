@@ -1,24 +1,11 @@
-2025-03-27 03:11:26,074 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
-2025-03-27 03:11:26,860 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?movie_id=67842 HTTP/1.1" 200 None
-2025-03-27 03:11:51,683 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67842-The Miami Story (1954)-0047232-720p
-2025-03-27 03:11:51,683 - INFO - Iniciando o download do torrent com hash: 25602DE60E9547F8681C312BABF91C8C57AAE2B1
-2025-03-27 03:13:09,005 - DEBUG - Checking None for explicit credentials as part of auth process...
-2025-03-27 03:13:09,006 - DEBUG - Checking Cloud SDK credentials as part of auth process...
-2025-03-27 03:13:09,006 - DEBUG - Cloud SDK credentials not found on disk; not using them
-2025-03-27 03:13:09,008 - DEBUG - Making request: GET http://169.254.169.254
-2025-03-27 03:13:09,010 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
-2025-03-27 03:13:09,020 - WARNING - No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
-2025-03-27 03:13:09,021 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
-2025-03-27 03:13:09,023 - DEBUG - Starting new HTTP connection (1): metadata.google.internal:80
-2025-03-27 03:13:09,122 - DEBUG - http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 404 0
-2025-03-27 03:13:09,123 - INFO - Failure refreshing credentials: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7a576296ff50>)
-2025-03-27 03:13:09,123 - DEBUG - Checking None for explicit credentials as part of auth process...
-2025-03-27 03:13:09,123 - DEBUG - Checking Cloud SDK credentials as part of auth process...
-2025-03-27 03:13:09,124 - DEBUG - Cloud SDK credentials not found on disk; not using them
-2025-03-27 03:13:09,124 - DEBUG - Making request: GET http://169.254.169.254
-2025-03-27 03:13:09,125 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
-2025-03-27 03:13:09,128 - WARNING - No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
-2025-03-27 03:13:09,128 - DEBUG - Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
-2025-03-27 03:13:09,130 - DEBUG - Starting new HTTP connection (1): metadata.google.internal:80
-2025-03-27 03:13:09,247 - DEBUG - http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 404 0
-2025-03-27 03:13:09,247 - INFO - Failure refreshing credentials: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7a57615e4e10>)
+2025-03-27 04:27:34,670 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
+2025-03-27 04:27:35,010 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt3580332 HTTP/1.1" 200 None
+2025-03-27 04:27:35,299 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67840-White Trash (2021)-3580332-720p
+2025-03-27 04:27:35,299 - INFO - Iniciando o download do torrent com hash: 4139C5B0D39E20402088C49C4853BE51764BF1B1
+2025-03-27 04:29:08,274 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
+2025-03-27 04:29:08,275 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
+2025-03-27 04:29:08,275 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
+2025-03-27 04:29:08,275 - ERROR - Formato inválido para movie_info: White Trash (2021) [NORDIC] [720p] [WEBRip] [YTS.MX]
+2025-03-27 04:29:08,276 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-03-27 04:29:08,316 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=name+%3D+%27app.log%27+and+%271sASley-Ks5DOKkx61tcCsaTX5ErT-YYr%27+in+parents&spaces=drive&fields=nextPageToken%2C+files%28id%2C+name%29&alt=json
+2025-03-27 04:29:08,319 - DEBUG - Making request: POST https://oauth2.googleapis.com/token

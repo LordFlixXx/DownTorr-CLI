@@ -21,7 +21,7 @@ def get_largest_non_3d_torrent(torrents):
     # Ordenar torrents pelo tamanho (size_bytes) em ordem decrescente
     sorted_torrents = sorted(non_3d_torrents, key=lambda x: x.get('size_bytes', 0), reverse=True)
     # Retornar o maior torrent não 3D
-    return sorted_torrents[0] if non_3d_torrents else None
+    return sorted_torrents[0] if sorted_torrents else None
 
 def process_torrent(torrent_info):
     download_and_process_torrent(torrent_info)
@@ -69,7 +69,7 @@ def manual_processing():
 
     if movie:
         torrents = movie.get('torrents', [])
-        print(f"Torrents encontrados para {movie['title_long']}:")
+        print(f"Torrents encontrados para {movie['title_long']}:\n")
         for t in torrents:
             print(f"Hash: {t['hash']}, Quality: {t['quality']}, Size: {t['size_bytes']}")
 
