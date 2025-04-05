@@ -35,7 +35,7 @@ def send_to_hydrax(file_path):
     Envia um arquivo para a API Hydrax.
     Retorna a resposta da API e o slug do arquivo no Hydrax, se o upload for bem-sucedido.
     """
-    url = 'http://up.hydrax.net/1caff45d13aa9b94432f21ba0ae7d2ac'
+    url = 'http://up.hydrax.net/276350a6150b6257eb928d9d3aba9fbf'
     file_name = os.path.basename(file_path)
     file_type = 'video/mp4'
 

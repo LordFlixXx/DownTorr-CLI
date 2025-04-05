@@ -1,6 +1,5 @@
-2025-03-27 05:28:03,155 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
-2025-03-27 05:28:03,515 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt34057707 HTTP/1.1" 200 None
-2025-03-27 05:28:13,692 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67813-Gandhi Tatha Chettu (2025)-34057707-720p
-2025-03-27 05:28:13,693 - INFO - Iniciando o download do torrent com hash: D92D1101934E39840E9DE8A1FFD1334C7E534B8C
-2025-03-27 05:30:01,352 - ERROR - Formato inválido para movie_info: Gandhi Tatha Chettu (2025) [720p] [WEBRip] [YTS.MX]
-2025-03-27 05:30:01,353 - ERROR - Formato inválido para movie_info: Gandhi Tatha Chettu (2025) [720p] [WEBRip] [YTS.MX]
+2025-04-05 02:04:30,811 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
+2025-04-05 02:04:31,499 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt14961016 HTTP/1.1" 200 None
+2025-04-05 02:04:44,055 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-2160p
+2025-04-05 02:04:44,056 - INFO - Iniciando o download do torrent com hash: 2840164AEAA8EA025CE0A2E34DDB398E8E9541F5
+2025-04-05 02:09:55,010 - INFO - Tentando renomear arquivo: /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-2160p/Im Still Here (2024) [2160p] [4K] [WEB] [5.1] [YTS.MX]/Im.Still.Here.2024.2160p.4K.WEB.x265.10bit.AAC5.1-[YTS.MX].mkv para /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-2160p/Im Still Here (2024) [2160p] [4K] [WEB] [5.1] [YTS.MX]/67449-I'm Still Here (2024)-14961016-2160p.mkv
