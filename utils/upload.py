@@ -1,6 +1,7 @@
 ﻿import os
 import shutil
 import logging
+import requests
 
 def save_subtitles_to_drive(imdb_code, hash_value, subtitle_path):
     """Salva as legendas no Google Drive montado."""
@@ -27,3 +28,51 @@ def upload_subtitles(directory):
                     save_subtitles_to_drive(imdb_code, hash_value, subtitle_path)
                 except ValueError:
                     logging.error(f"Erro ao processar legenda: {file}. Informação do filme: {movie_info}")
+
+# Função para enviar arquivo para a API Hydrax
+def send_to_hydrax(file_path):
+    """
+    Envia um arquivo para a API Hydrax.
+    Retorna a resposta da API e o slug do arquivo no Hydrax, se o upload for bem-sucedido.
+    """
+    url = 'http://up.hydrax.net/1caff45d13aa9b94432f21ba0ae7d2ac'
+    file_name = os.path.basename(file_path)
+    file_type = 'video/mp4'
+
+    try:
+        with open(file_path, 'rb') as file:
+            files_data = {'file': (file_name, file, file_type)}
+            response = requests.post(url, files=files_data)
+            print(f'Resposta da API para {file_name}: {response.text}')
+            if response.status_code == 200:
+                hydrax_slug = response.json().get('slug', '')
+                return response, hydrax_slug
+            return response, None
+    except requests.RequestException as e:
+        print(f'Erro ao enviar o arquivo para a API: {e}')
+        return None, None
+
+def upload_files(directory):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(('.srt', '.vtt')):
+                subtitle_path = os.path.join(root, file)
+                try:
+                    movie_info = root.split('/')[-2]
+                    if '-' not in movie_info:
+                        logging.error(f"Formato inválido para movie_info: {movie_info}")
+                        continue
+                    imdb_code, hash_value = movie_info.split('-', 1)
+                    save_subtitles_to_drive(imdb_code, hash_value, subtitle_path)
+                except ValueError:
+                    logging.error(f"Erro ao processar legenda: {file}. Informação do filme: {movie_info}")
+            elif file.endswith(('.mp4', '.mkv', '.avi', '.webm')):
+                video_path = os.path.join(root, file)
+                try:
+                    response, hydrax_slug = send_to_hydrax(video_path)
+                    if hydrax_slug:
+                        print(f'Arquivo {os.path.basename(video_path)} enviado com sucesso para Hydrax. Slug: {hydrax_slug}')
+                    else:
+                        logging.error(f"Erro ao enviar arquivo {os.path.basename(video_path)} para Hydrax. Resposta: {response.text}")
+                except ValueError:
+                    logging.error(f"Erro ao processar arquivo de vídeo: {file}.")
