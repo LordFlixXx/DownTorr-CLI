@@ -1,4 +1,4 @@
-﻿import os
+﻿﻿import os
 import shutil
 import logging
 import requests
@@ -41,8 +41,8 @@ def send_to_hydrax(file_path):
 
     try:
         with open(file_path, 'rb') as file:
-            files_data = {'file': (file_name, file, file_type)}
-            response = requests.post(url, files=files_data)
+            files = {'file': (file_name, file, file_type)}
+            response = requests.post(url, files=files)
             print(f'Resposta da API para {file_name}: {response.text}')
             if response.status_code == 200:
                 hydrax_slug = response.json().get('slug', '')
@@ -69,10 +69,20 @@ def upload_files(directory):
             elif file.endswith(('.mp4', '.mkv', '.avi', '.webm')):
                 video_path = os.path.join(root, file)
                 try:
+                    # Upload para a API Hydrax
                     response, hydrax_slug = send_to_hydrax(video_path)
                     if hydrax_slug:
                         print(f'Arquivo {os.path.basename(video_path)} enviado com sucesso para Hydrax. Slug: {hydrax_slug}')
                     else:
                         logging.error(f"Erro ao enviar arquivo {os.path.basename(video_path)} para Hydrax. Resposta: {response.text}")
+                    
+                    # Copiar o arquivo de vídeo para o Google Drive
+                    drive_path = '/content/drive/MyDrive/Projetos/Filmes'
+                    destination_path = os.path.join(drive_path, os.path.basename(video_path))
+                    shutil.copy2(video_path, destination_path)
+                    print(f"Arquivo de vídeo {os.path.basename(video_path)} copiado para o Google Drive.")
+                    
                 except ValueError:
                     logging.error(f"Erro ao processar arquivo de vídeo: {file}.")
+                except (shutil.Error, OSError) as e:
+                    logging.error(f"Erro ao copiar arquivo de vídeo {os.path.basename(video_path)} para o Google Drive: {e}")
