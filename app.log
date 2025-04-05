@@ -1,8 +1,8 @@
-2025-04-05 02:29:14,397 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
-2025-04-05 02:29:15,075 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt14961016 HTTP/1.1" 200 None
-2025-04-05 02:29:30,962 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-1080p
-2025-04-05 02:29:30,963 - INFO - Iniciando o download do torrent com hash: 7F18C6D54601662620FBCAAF1DDDFACD6FDB53DE
-2025-04-05 02:35:39,011 - INFO - Tentando renomear arquivo: /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-1080p/Im Still Here (2024) [1080p] [WEBRip] [5.1] [YTS.MX]/Im.Still.Here.2024.1080p.WEBRip.x264.AAC5.1-[YTS.MX].mp4 para /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-1080p/Im Still Here (2024) [1080p] [WEBRip] [5.1] [YTS.MX]/67449-I'm Still Here (2024)-14961016-1080p.mp4
-2025-04-05 02:35:39,609 - ERROR - Formato inválido para movie_info: Im Still Here (2024) [1080p] [WEBRip] [5.1] [YTS.MX]
-2025-04-05 02:35:39,610 - ERROR - Formato inválido para movie_info: Im Still Here (2024) [1080p] [WEBRip] [5.1] [YTS.MX]
-2025-04-05 02:35:39,610 - ERROR - Formato inválido para movie_info: Im Still Here (2024) [1080p] [WEBRip] [5.1] [YTS.MX]
+2025-04-05 04:23:22,529 - DEBUG - Starting new HTTPS connection (1): yts.mx:443
+2025-04-05 04:23:23,236 - DEBUG - https://yts.mx:443 "GET /api/v2/movie_details.json?imdb_id=tt14961016 HTTP/1.1" 200 None
+2025-04-05 04:23:32,964 - INFO - Criado diretório: /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-720p
+2025-04-05 04:23:32,965 - INFO - Iniciando o download do torrent com hash: F0586D9E4399BE1952107745D8ED3C75A100CD37
+2025-04-05 04:25:56,117 - INFO - Tentando renomear arquivo: /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-720p/Im Still Here (2024) [720p] [WEBRip] [YTS.MX]/Im.Still.Here.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4 para /content/drive/MyDrive/Projetos/Filmes/67449-I'm Still Here (2024)-14961016-720p/Im Still Here (2024) [720p] [WEBRip] [YTS.MX]/67449-I'm Still Here (2024)-14961016-720p.mp4
+2025-04-05 04:25:56,296 - ERROR - Formato inválido para movie_info: Im Still Here (2024) [720p] [WEBRip] [YTS.MX]
+2025-04-05 04:25:56,297 - ERROR - Formato inválido para movie_info: Im Still Here (2024) [720p] [WEBRip] [YTS.MX]
+2025-04-05 04:25:56,297 - ERROR - Formato inválido para movie_info: Im Still Here (2024) [720p] [WEBRip] [YTS.MX]

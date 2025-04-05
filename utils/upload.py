@@ -3,6 +3,15 @@ import shutil
 import logging
 import requests
 
+# Função para criar a pasta /content/filmes se não existir
+def create_filmes_directory():
+    filmes_path = '/content/filmes'
+    if not os.path.exists(filmes_path):
+        os.makedirs(filmes_path)
+        print(f"Pasta {filmes_path} criada com sucesso.")
+    else:
+        print(f"Pasta {filmes_path} já existe.")
+
 def save_subtitles_to_drive(imdb_code, hash_value, subtitle_path):
     """Salva as legendas no Google Drive montado."""
     drive_path = '/content/drive/MyDrive/GitHub/MakingOff.eu.org/dist/cc'
@@ -53,6 +62,8 @@ def send_to_hydrax(file_path):
         return None, None
 
 def upload_files(directory):
+    create_filmes_directory()  # Certifique-se de que a pasta /content/filmes existe
+
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(('.srt', '.vtt')):
