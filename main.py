@@ -112,7 +112,7 @@ def main():
     if manual:
         return
 
-    file_path = '/content/drive/MyDrive/GitHub/MakingOff/dist/filmes.json'
+    file_path = '/content/drive/MyDrive/GitHub/MakingOff.eu.org/dist/filmes.json'
     
     while True:
         # Ler o arquivo JSON do Google Drive
